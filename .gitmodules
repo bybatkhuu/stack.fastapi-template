@@ -1,0 +1,3 @@
+[submodule "volumes/src/fastapi-template"]
+	path = volumes/src/fastapi-template
+	url = ../rest.fastapi-template.git
