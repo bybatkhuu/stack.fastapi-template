@@ -19,7 +19,7 @@ This is a Stack FastAPI Template project.
 
 ### 1. Prerequisites
 
-- Install **docker** and **docker-compose** in **server** - <https://docs.docker.com/engine/install>
+- Install **docker** and **docker-compose** - <https://docs.docker.com/engine/install>
 
 For **development**:
 

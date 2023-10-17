@@ -9,8 +9,8 @@ services:
       TZ: ${TZ:-Asia/Seoul}
       FASTAPI_TEMPLATE_APP_PORT: ${FASTAPI_TEMPLATE_APP_PORT:-8000}
     volumes:
-      - "./volumes/storage/fastapi-orm-template/data:/var/lib/fastapi-orm-template"
-      - "./volumes/storage/fastapi-orm-template/logs:/var/log/fastapi-orm-template"
+      - "./volumes/storage/fastapi-template/data:/var/lib/fastapi-template"
+      - "./volumes/storage/fastapi-template/logs:/var/log/fastapi-template"
     ports:
       - "${FASTAPI_TEMPLATE_APP_PORT:-8000}:${FASTAPI_TEMPLATE_APP_PORT:-8000}"
     tty: true
