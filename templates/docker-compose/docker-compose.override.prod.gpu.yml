@@ -2,8 +2,13 @@ version: "3.8"
 
 services:
   api:
+    image: bybatkhuu/fastapi-template:latest-gpu
+    runtime: nvidia
     env_file:
       - .env
+    environment:
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+      CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-all}
     # deploy:
     #   replicas: 0
     #   resources:

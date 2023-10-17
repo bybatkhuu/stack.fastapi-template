@@ -1,16 +1,16 @@
 version: "3.8"
 
 services:
-  template:
-    image: ${IMG_NAMESCAPE}/template:0.0.0-000000
+  api:
+    image: bybatkhuu/fastapi-template:4.0.1-231017
     restart: unless-stopped
     environment:
-      - TERM=${TERM:-xterm}
-      - TZ=${TZ:-Asia/Seoul}
-      - TEMPLATE_PORT=${TEMPLATE_PORT:-8000}
+      TERM: ${TERM:-xterm}
+      TZ: ${TZ:-Asia/Seoul}
+      FASTAPI_TEMPLATE_APP_PORT: ${FASTAPI_TEMPLATE_APP_PORT:-8000}
     volumes:
-      - "./volumes/storage/template/data:/var/lib/template"
-      - "./volumes/storage/template/logs:/var/log/template"
+      - "./volumes/storage/fastapi-orm-template/data:/var/lib/fastapi-orm-template"
+      - "./volumes/storage/fastapi-orm-template/logs:/var/log/fastapi-orm-template"
     ports:
-      - "${TEMPLATE_PORT:-8000}:${TEMPLATE_PORT:-8000}"
+      - "${FASTAPI_TEMPLATE_APP_PORT:-8000}:${FASTAPI_TEMPLATE_APP_PORT:-8000}"
     tty: true

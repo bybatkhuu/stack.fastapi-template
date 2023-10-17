@@ -2,8 +2,13 @@ version: "3.8"
 
 services:
   api:
+    image: bybatkhuu/fastapi-template:latest-gpu
+    runtime: nvidia
     env_file:
       - .env
+    environment:
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+      CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-all}
     volumes:
       - "./volumes/storage/fastapi-template/logs:${FASTAPI_TEMPLATE_APP_LOGS_DIR:-/var/log/fastapi-template}"
       - "./volumes/storage/fastapi-template/data:${FASTAPI_TEMPLATE_APP_DATA_DIR:-/var/lib/fastapi-template}"

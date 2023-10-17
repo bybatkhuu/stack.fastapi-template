@@ -1,12 +1,17 @@
-# Stack Template
+# Stack FastAPI Template
 
-This is a template repo for a stack services.
+This is a Stack FastAPI Template project.
 
 ## Features
 
+- Stack
+- FastAPI
+- REST API
+- Web service
+- Microservice
 - Template
 - CI/CD
-- Docker and docker-compose
+- Docker and docker compose
 
 ---
 
@@ -31,50 +36,37 @@ mkdir -pv ~/workspaces/projects
 
 # Enter into projects directory:
 cd ~/workspaces/projects
-
-# Set repository owner:
-export _REPO_OWNER=[REPO_OWNER]
-# For example:
-export _REPO_OWNER=username
 ```
 
 **2.2.** Follow one of the below options **[A]**, **[B]** or **[C]**:
 
-**A.** Download source code from releases page:
-
-- Releases - <https://github.com/[REPO_OWNER]/stack.template/releases>
+**A.** Clone the repository (for **public**: git + https):
 
 ```sh
-# Set to downloaded version:
-export _VERSION=[VERSION]
-# For example:
-export _VERSION=1.0.0
+git clone https://github.com/bybatkhuu/stack.fastapi-template.git && \
+    cd stack.fastapi-template
 
-# Move downloaded archive file to current projects directory:
-mv -v ~/Downloads/stack.template-${_VERSION}.zip .
-
-# Extract downloaded archive file:
-unzip stack.template-${_VERSION}.zip
-
-# Remove downloaded archive file:
-rm -v stack.template-${_VERSION}.zip
-
-# Rename extracted directory into project name:
-mv -v stack.template-${_VERSION} stack.template && cd stack.template
+# Or clone with all submodules:
+git clone --recursive https://github.com/bybatkhuu/stack.fastapi-template.git && \
+    cd stack.fastapi-template && \
+    git submodule update --init --recursive && \
+    git submodule foreach --recursive git checkout main
 ```
 
-**B.** Or clone the repository (git + ssh key):
+**B.** Clone the repository (for **development**: git + ssh key):
 
 ```sh
-git clone git@github.com:${_REPO_OWNER}/stack.template.git && cd stack.template
+git clone git@github.com:bybatkhuu/stack.fastapi-template.git && \
+    cd stack.fastapi-template
+
+# Or clone with all submodules:
+git clone --recursive git@github.com:bybatkhuu/stack.fastapi-template.git && \
+    cd stack.fastapi-template && \
+    git submodule update --init --recursive && \
+    git submodule foreach --recursive git checkout main
 ```
 
-**C.** **[For development]** Or clone with all submodules (git + ssh key):
-
-```sh
-git clone --recursive git@github.com:${_REPO_OWNER}/stack.template.git && cd stack.template && \
-    git submodule update --init --recursive && git submodule foreach --recursive git checkout main
-```
+**C.** Download source code: <https://github.com/bybatkhuu/stack.fastapi-template/releases>
 
 ### 3. Configure environment
 
@@ -85,11 +77,11 @@ git clone --recursive git@github.com:${_REPO_OWNER}/stack.template.git && cd sta
 **IMPORTANT:** Please, check **[environment variables](#environment-variables)**!
 
 ```sh
-# Copy .env.example file into .env file:
-cp -v .env.example .env
+# Copy '.env.example' file to '.env' file:
+cp -v ./.env.example ./.env
 
 # Edit environment variables to fit in your environment:
-nano .env
+nano ./.env
 ```
 
 **3.2.** Configure **`docker-compose.override.yml`** file:
@@ -102,11 +94,11 @@ export _ENV=[ENV]
 # For example for development environment:
 export _ENV=dev
 
-# Copy docker-compose.override.[ENV].yml into docker-compose.override.yml file:
-cp -v ./templates/docker-compose/docker-compose.override.${_ENV}.yml docker-compose.override.yml
+# Copy 'docker-compose.override.[ENV].yml' file to 'docker-compose.override.yml' file:
+cp -v ./templates/docker-compose/docker-compose.override.${_ENV}.yml ./docker-compose.override.yml
 
-# Edit docker-compose.override.yml file to fit in your environment:
-nano docker-compose.override.yml
+# Edit 'docker-compose.override.yml' file to fit in your environment:
+nano ./docker-compose.override.yml
 ```
 
 **3.3.** Validate docker compose configuration:
@@ -114,8 +106,7 @@ nano docker-compose.override.yml
 **NOTICE:** If you get an error or warning, check your configuration files (**`.env`** or **`docker-compose.override.yml`**).
 
 ```sh
-./stack.template-compose.sh validate
-
+./compose.sh validate
 # Or:
 docker compose config
 ```
@@ -123,17 +114,16 @@ docker compose config
 ### 4. Run docker compose
 
 ```sh
-./stack.template-compose.sh start -l
-
+./compose.sh start -l
 # Or:
-docker compose up -d && docker compose logs -f --tail 100
+docker compose up -d && \
+    docker compose logs -f --tail 100
 ```
 
 ### 5. Stop docker compose
 
 ```sh
-./stack.template-compose.sh stop
-
+./compose.sh stop
 # Or:
 docker compose down
 ```
@@ -149,16 +139,22 @@ You can use the following environment variables to configure:
 [**`.env.example`**](.env.example)
 
 ```sh
-## Docker image namespace:
-IMG_NAMESCAPE=username
+## --- Environment variable --- ##
+ENV=local
+DEBUG=false
+# TZ=Asia/Seoul
 
-## Template port:
-TEMPLATE_PORT=8000
+
+## -- APP configs -- ##
+FASTAPI_TEMPLATE_APP_PORT=8000
+FASTAPI_TEMPLATE_APP_LOGS_DIR="/var/log/fastapi-template"
 ```
 
 ## Arguments
 
 You can use the following arguments to configure:
+
+For **api** service:
 
 **template**:
 
@@ -171,6 +167,8 @@ For example as in [**`docker-compose.override.yml`**](templates/docker-compose/d
 
 ```yml
     command: ["/bin/bash"]
+    command: ["-b", "pwd && ls -al && /bin/bash"]
+    command: ["-b", "sleep 3 && uvicorn main:app --host=0.0.0.0 --port=${FASTAPI_TEMPLATE_APP_PORT:-8000} --no-server-header --proxy-headers --forwarded-allow-ips='*' --no-access-log"]
 ```
 
 ## Roadmap
@@ -181,5 +179,6 @@ For example as in [**`docker-compose.override.yml`**](templates/docker-compose/d
 
 ## References
 
+- FastAPI - <https://fastapi.tiangolo.com>
 - Docker - <https://www.docker.com>
 - Docker Compose - <https://docs.docker.com/compose>

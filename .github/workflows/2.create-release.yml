@@ -1,13 +1,15 @@
 name: 2. Create Release
 
 on:
+  workflow_run:
+    branches:
+      - main
+    workflows: ["1. Bump Version"]
+    types:
+      - completed
   push:
     tags:
-      - "v*.*.*-*"
-  pull_request:
-    tags:
-      - "v*.*.*-*"
-  workflow_dispatch:
+      - "v*.*.*"
 
 jobs:
   create_release:
