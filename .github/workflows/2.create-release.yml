@@ -15,7 +15,6 @@ jobs:
   create_release:
     name: Create Release
     runs-on: ubuntu-22.04
-    if: ${{ github.ref_type == 'tag' }}
     permissions:
       contents: write
     steps:
