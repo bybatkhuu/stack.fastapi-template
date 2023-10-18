@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   api:
+    image: bybatkhuu/fastapi-template:latest
     env_file:
       - .env
     volumes:
