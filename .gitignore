@@ -525,7 +525,6 @@ results/
 extra_configs/
 pythonpath/
 stack.fastapi-template/
-stack.{{cookiecutter.project_slug}}/
 .benchmarks/
 .temp/
 .temp.*/
@@ -543,7 +542,6 @@ results
 extra_configs
 pythonpath
 stack.fastapi-template
-stack.{{cookiecutter.project_slug}}
 pm2-process.json
 sample.py
 example.py

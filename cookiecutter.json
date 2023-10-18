@@ -1,0 +1,12 @@
+{
+  "project_name": "FastAPI Template",
+  "project_abbr": "ft",
+  "project_slug": "{{cookiecutter.project_name.lower().strip().replace(' ', '-').replace('_', '-').replace('.', '-')}}",
+  "env_prefix": "{{cookiecutter.project_slug.upper().replace('-', '_')}}_",
+  "repo_owner": "username",
+  "github_owner": "{{cookiecutter.repo_owner}}",
+  "docker_registry": "{{cookiecutter.repo_owner}}",
+  "version": "4.0.1-231017",
+  "timezone": "UTC",
+  "domain": "example.com"
+}
