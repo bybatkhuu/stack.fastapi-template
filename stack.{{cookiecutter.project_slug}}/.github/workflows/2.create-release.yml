@@ -25,4 +25,4 @@ jobs:
         name: Create release
         env:
           GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
-        run: gh release create ${GITHUB_REF_NAME} --generate-notes
+        run: gh release create v$(./scripts/get-version.sh) --generate-notes
