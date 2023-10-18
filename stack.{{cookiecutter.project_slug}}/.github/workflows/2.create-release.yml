@@ -15,7 +15,6 @@ jobs:
   create_release:
     name: Create Release
     runs-on: ubuntu-22.04
-    if: {% raw %}${{ github.ref_type == 'tag' }}{% endraw %}
     permissions:
       contents: write
     steps:
