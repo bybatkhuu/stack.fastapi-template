@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   api:
+    image: {{cookiecutter.docker_registry}}/{{cookiecutter.project_slug}}:latest
     env_file:
       - .env
     volumes:

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   api:
-    image: {{cookiecutter.docker_registry}}/{{cookiecutter.project_slug}}:4.0.1-231017
+    image: {{cookiecutter.docker_registry}}/{{cookiecutter.project_slug}}:{{cookiecutter.sub_version}}
     restart: unless-stopped
     environment:
       TERM: ${TERM:-xterm}
