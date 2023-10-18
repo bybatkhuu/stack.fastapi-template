@@ -7,8 +7,8 @@ services:
     volumes:
       - "./volumes/storage/fastapi-template/logs:${FASTAPI_TEMPLATE_APP_LOGS_DIR:-/var/log/fastapi-template}"
       - "./volumes/storage/fastapi-template/data:${FASTAPI_TEMPLATE_APP_DATA_DIR:-/var/lib/fastapi-template}"
-      - "./scripts/docker/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh"
-      - "./app:/app/fastapi-template"
+      - "./volumes/src/fastapi-template/scripts/docker/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh"
+      - "./volumes/src/fastapi-template/app:/app/fastapi-template"
       - "./volumes/.vscode-server:/home/ft-user/.vscode-server"
     # deploy:
     #   replicas: 0

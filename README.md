@@ -148,6 +148,7 @@ DEBUG=false
 ## -- APP configs -- ##
 FASTAPI_TEMPLATE_APP_PORT=8000
 FASTAPI_TEMPLATE_APP_LOGS_DIR="/var/log/fastapi-template"
+FASTAPI_TEMPLATE_APP_DATA_DIR="/var/lib/fastapi-template"
 ```
 
 ## Arguments
@@ -155,8 +156,6 @@ FASTAPI_TEMPLATE_APP_LOGS_DIR="/var/log/fastapi-template"
 You can use the following arguments to configure:
 
 For **api** service:
-
-**template**:
 
 ```txt
 -b, --bash, bash, /bin/bash
@@ -168,7 +167,7 @@ For example as in [**`docker-compose.override.yml`**](templates/docker-compose/d
 ```yml
     command: ["/bin/bash"]
     command: ["-b", "pwd && ls -al && /bin/bash"]
-    command: ["-b", "sleep 3 && uvicorn main:app --host=0.0.0.0 --port=${FASTAPI_TEMPLATE_APP_PORT:-8000} --no-server-header --proxy-headers --forwarded-allow-ips='*' --no-access-log"]
+    command: ["-b", "sleep 1 && uvicorn main:app --host=0.0.0.0 --port=${FASTAPI_TEMPLATE_APP_PORT:-8000} --no-server-header --proxy-headers --forwarded-allow-ips='*' --no-access-log"]
 ```
 
 ## Roadmap
